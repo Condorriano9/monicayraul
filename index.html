@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mónica y Raúl · Nuestra boda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FCFCFA;--surface:#EEF2F7;--ink:#1B2433;--muted:#566176;--azul:#1D4E89;--geranio:#C8305A;--line:#D3DBE6;--onazul:#FFFFFF;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101722;--surface:#17212F;--ink:#EEF1F6;--muted:#A3AEC0;--azul:#7FA8DE;--geranio:#F0708F;--line:#2A3649;--onazul:#101722}}
+:root[data-theme="dark"]{--bg:#101722;--surface:#17212F;--ink:#EEF1F6;--muted:#A3AEC0;--azul:#7FA8DE;--geranio:#F0708F;--line:#2A3649;--onazul:#101722}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 Figtree,system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2{font-family:"Young Serif",Georgia,"Times New Roman",serif;font-weight:400;line-height:1.1;margin:0}
+a{color:var(--azul)}
+:focus-visible{outline:3px solid var(--geranio);outline-offset:3px;border-radius:4px}
+.hero{text-align:center;padding:3rem 1.25rem 3.5rem}
+.arco{position:relative;width:min(100%,21rem);margin:0 auto}
+.arco svg{display:block;width:100%;height:auto}
+.arco .texto{position:absolute;inset:34% 0 auto 0;padding:0 12%}
+.arco h1{font-size:clamp(2.1rem,9vw,3rem);color:var(--azul)}
+.arco .y{display:block;font:400 1.05rem Figtree,sans-serif;color:var(--geranio);margin:.35rem 0}
+.fecha{font-size:1.2rem;margin:1.75rem 0 .25rem;font-weight:600}
+.lugar{color:var(--muted);margin:0}
+.cuenta{margin:.75rem 0 0;color:var(--geranio);font-weight:600}
+nav{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;justify-content:center;padding:0 1.25rem 2rem}
+nav a{text-decoration:none;font-weight:500;padding:.35rem .1rem;border-bottom:2px solid var(--line)}
+nav a:hover{border-color:var(--geranio)}
+section{padding:3.25rem 1.25rem}
+section:nth-of-type(even){background:var(--surface)}
+.in{max-width:40rem;margin:0 auto}
+h2{font-size:1.9rem;color:var(--azul);margin-bottom:1.1rem}
+p{margin:0 0 1rem}
+.pend{color:var(--muted);font-style:italic}
+dl{margin:0}
+dt{font-weight:600;margin-top:1.1rem}
+dd{margin:.15rem 0 0;color:var(--muted)}
+ol.prog{list-style:none;margin:0;padding:0 0 0 1.4rem;border-left:3px solid var(--azul)}
+ol.prog li{position:relative;padding:0 0 1.25rem .5rem}
+ol.prog li::before{content:"";position:absolute;left:-1.4rem;top:.55rem;width:.75rem;height:.75rem;margin-left:-.45rem;border-radius:50%;background:var(--geranio)}
+ol.prog b{display:block}
+.btn{display:inline-block;background:var(--azul);color:var(--onazul);padding:.85rem 1.5rem;border-radius:999px;font-weight:600;text-decoration:none;border:0;font-size:1.05rem}
+.btn[aria-disabled="true"]{background:var(--line);color:var(--muted);pointer-events:none}
+footer{text-align:center;padding:2.5rem 1.25rem 3rem;color:var(--muted);font-size:.95rem}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="arco">
+    <svg viewBox="0 0 300 400" role="img" aria-label="Arco de herradura">
+      <path d="M26 400V215A132 132 0 1 1 274 215V400" fill="none" stroke="var(--azul)" stroke-width="16"/>
+      <path d="M26 400V215A132 132 0 1 1 274 215V400" fill="none" stroke="var(--bg)" stroke-width="16" stroke-dasharray="17 17"/>
+      <path d="M52 400V218A106 106 0 1 1 248 218V400" fill="none" stroke="var(--geranio)" stroke-width="2"/>
+    </svg>
+    <div class="texto"><h1>Mónica<span class="y">y</span>Raúl</h1></div>
+  </div>
+  <p class="fecha" id="fecha">Fecha por confirmar</p>
+  <p class="lugar">Córdoba</p>
+  <p class="cuenta" id="cuenta" hidden></p>
+</header>
+<nav aria-label="Secciones">
+  <a href="#donde">Cuándo y dónde</a><a href="#programa">Programa</a><a href="#llegar">Llegar y dormir</a><a href="#detalles">Detalles</a><a href="#asistencia">Confirmar asistencia</a>
+</nav>
+
+<main>
+<section id="donde"><div class="in">
+  <h2>Cuándo y dónde</h2>
+  <p>Nos casamos en Córdoba y queremos celebrarlo con vosotros. En cuanto cerremos fecha y lugares los publicamos aquí.</p>
+  <dl>
+    <dt>Fecha</dt><dd id="fecha2">Por confirmar</dd>
+    <dt>Ceremonia</dt><dd>Lugar y hora por confirmar</dd>
+    <dt>Celebración</dt><dd>Lugar y hora por confirmar</dd>
+  </dl>
+</div></section>
+
+<section id="programa"><div class="in">
+  <h2>Programa del día</h2>
+  <p class="pend">Horarios por confirmar. El orden previsto es este:</p>
+  <ol class="prog">
+    <li><b>Ceremonia</b>Os esperamos con tiempo para sentaros.</li>
+    <li><b>Aperitivo</b>Para brindar y saludar a todos.</li>
+    <li><b>Comida</b>Mesa, discursos y alguna sorpresa.</li>
+    <li><b>Fiesta</b>Baile hasta que aguanten los pies.</li>
+  </ol>
+</div></section>
+
+<section id="llegar"><div class="in">
+  <h2>Cómo llegar y dónde dormir</h2>
+  <p class="pend">Pendiente de cerrar los lugares.</p>
+  <dl>
+    <dt>Cómo llegar</dt><dd>Córdoba tiene estación de AVE y se llega bien desde Madrid, Sevilla y Málaga. Añadiremos mapa y aparcamiento cuando tengamos el sitio.</dd>
+    <dt>Alojamiento</dt><dd>Os pasaremos opciones cercanas al lugar de la celebración. Si venís de fuera, reservad cuando conozcáis la fecha.</dd>
+    <dt>Transporte el día de la boda</dt><dd>Por confirmar.</dd>
+  </dl>
+</div></section>
+
+<section id="detalles"><div class="in">
+  <h2>Detalles</h2>
+  <dl>
+    <dt>Vestimenta</dt><dd>Por confirmar. Si la boda cae en verano, ya sabéis lo que es Córdoba: ropa fresca y calzado cómodo.</dd>
+    <dt>Regalo</dt><dd>Vuestra presencia es lo importante. Si queréis tener un detalle, os daremos los datos aquí más adelante.</dd>
+    <dt>Alergias y menús</dt><dd>Podréis indicarlas en el formulario de asistencia.</dd>
+    <dt>Dudas</dt><dd>Escribidnos a Mónica o a Raúl directamente.</dd>
+  </dl>
+</div></section>
+
+<section id="asistencia"><div class="in">
+  <h2>Confirmar asistencia</h2>
+  <p>Rellenad el formulario con vuestro nombre, cuántos vendréis, alergias y si necesitáis transporte. Nos ayuda mucho a organizarlo todo.</p>
+  <p><a class="btn" id="btnForm" href="#asistencia" aria-disabled="true">El formulario estará disponible pronto</a></p>
+</div></section>
+</main>
+
+<footer>Mónica y Raúl · Córdoba</footer>
+
+<script>
+// Editar estos dos valores cuando estén definidos:
+var FECHA = null;      // por ejemplo: "2027-06-12T12:00:00"
+var FORM_URL = "";     // enlace del Google Forms
+(function(){
+  if (FECHA) {
+    var d = new Date(FECHA);
+    if (!isNaN(d)) {
+      var txt = new Intl.DateTimeFormat("es-ES", {dateStyle:"full"}).format(d);
+      txt = txt.charAt(0).toUpperCase() + txt.slice(1);
+      document.getElementById("fecha").textContent = txt;
+      document.getElementById("fecha2").textContent = txt;
+      var dias = Math.ceil((d - new Date()) / 86400000);
+      var c = document.getElementById("cuenta");
+      if (dias > 0) { c.textContent = "Faltan " + dias + (dias === 1 ? " día" : " días"); c.hidden = false; }
+    }
+  }
+  if (FORM_URL) {
+    var b = document.getElementById("btnForm");
+    b.href = FORM_URL; b.target = "_blank"; b.rel = "noopener";
+    b.removeAttribute("aria-disabled");
+    b.textContent = "Confirmar asistencia";
+  }
+})();
+</script>
+</body>
+</html>
