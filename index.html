@@ -24,6 +24,12 @@ a{color:var(--azul)}
 .arco .texto{position:absolute;inset:34% 0 auto 0;padding:0 12%}
 .arco h1{font-size:clamp(2.1rem,9vw,3rem);color:var(--azul)}
 .arco .y{display:block;font:400 1.05rem Figtree,sans-serif;color:var(--geranio);margin:.35rem 0}
+.portada{display:block;width:min(100%,24rem);height:auto;margin:0 auto 1.75rem;border-radius:1rem;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.portada[hidden]{display:none}
+.hero.tarjeta .arco{width:auto}
+.hero.tarjeta .arco svg{display:none}
+.hero.tarjeta .arco .texto{position:static;padding:0}
+.hero.tarjeta h1{font-size:clamp(2.4rem,10vw,3.4rem)}
 .hero.foto{background-size:cover;background-position:center;min-height:min(88svh,46rem);display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:3rem;color:#fff}
 .hero.foto .arco{width:auto}
 .hero.foto .arco svg{display:none}
@@ -65,6 +71,7 @@ footer{text-align:center;padding:2.5rem 1.25rem 3rem;color:var(--muted);font-siz
 </head>
 <body>
 <header class="hero">
+  <img class="portada" id="portada" width="828" height="1472" alt="Mónica y Raúl. Save the date: 16 de octubre de 2027" hidden>
   <div class="arco">
     <svg viewBox="0 0 300 400" role="img" aria-label="Arco de herradura">
       <path d="M26 400V215A132 132 0 1 1 274 215V400" fill="none" stroke="var(--azul)" stroke-width="16"/>
@@ -137,6 +144,7 @@ footer{text-align:center;padding:2.5rem 1.25rem 3rem;color:var(--muted);font-siz
 // Editar estos dos valores cuando estén definidos:
 var FECHA = "2027-10-16T00:00:00";
 var FORM_URL = "";     // enlace del Google Forms
+var FOTO_MODO = "tarjeta"; // "tarjeta": la imagen completa sobre los nombres; "fondo": foto de fondo detrás de los nombres
 var FOTO = "foto.jpg"; // foto subida junto a index.html; si no existe, se ve el arco solo
 (function(){
   if (FECHA) {
@@ -167,8 +175,14 @@ var FOTO = "foto.jpg"; // foto subida junto a index.html; si no existe, se ve el
     var im = new Image();
     im.onload = function(){
       var h = document.querySelector(".hero");
-      h.style.backgroundImage = "linear-gradient(rgba(10,20,35,.3),rgba(10,20,35,.68)), url('" + FOTO + "')";
-      h.classList.add("foto");
+      if (FOTO_MODO === "fondo") {
+        h.style.backgroundImage = "linear-gradient(rgba(10,20,35,.3),rgba(10,20,35,.68)), url('" + FOTO + "')";
+        h.classList.add("foto");
+      } else {
+        var p = document.getElementById("portada");
+        p.src = FOTO; p.hidden = false;
+        h.classList.add("tarjeta");
+      }
     };
     im.src = FOTO;
   }
