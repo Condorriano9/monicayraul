@@ -24,9 +24,24 @@ a{color:var(--azul)}
 .arco .texto{position:absolute;inset:34% 0 auto 0;padding:0 12%}
 .arco h1{font-size:clamp(2.1rem,9vw,3rem);color:var(--azul)}
 .arco .y{display:block;font:400 1.05rem Figtree,sans-serif;color:var(--geranio);margin:.35rem 0}
+.hero.foto{background-size:cover;background-position:center;min-height:min(88svh,46rem);display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:3rem;color:#fff}
+.hero.foto .arco{width:auto}
+.hero.foto .arco svg{display:none}
+.hero.foto .arco .texto{position:static;padding:0}
+.hero.foto h1{color:#fff;font-size:clamp(2.8rem,13vw,4.6rem);text-shadow:0 2px 16px rgba(0,0,0,.6)}
+.hero.foto .y{color:#FFD3DE;text-shadow:0 1px 10px rgba(0,0,0,.6)}
+.hero.foto .lugar{color:#fff}
 .fecha{font-size:1.2rem;margin:1.75rem 0 .25rem;font-weight:600}
 .lugar{color:var(--muted);margin:0}
-.cuenta{margin:.75rem 0 0;color:var(--geranio);font-weight:600}
+.cuenta{display:flex;justify-content:center;gap:.6rem;margin:1.1rem 0 0;padding:0;list-style:none}
+.cuenta[hidden],.hoy[hidden]{display:none}
+.cuenta li{min-width:4.2rem;padding:.55rem .4rem;border:1px solid var(--line);border-radius:.75rem;text-align:center;line-height:1.1}
+.cuenta b{display:block;font:400 1.75rem "Young Serif",Georgia,serif;color:var(--azul);font-variant-numeric:tabular-nums}
+.cuenta span{font-size:.78rem;color:var(--muted)}
+.hoy{margin:1.1rem 0 0;color:var(--geranio);font-weight:600;font-size:1.2rem}
+.hero.foto .cuenta li{border-color:rgba(255,255,255,.55);background:rgba(10,20,35,.35)}
+.hero.foto .cuenta b{color:#fff}
+.hero.foto .cuenta span,.hero.foto .hoy{color:#FFD3DE}
 nav{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;justify-content:center;padding:0 1.25rem 2rem}
 nav a{text-decoration:none;font-weight:500;padding:.35rem .1rem;border-bottom:2px solid var(--line)}
 nav a:hover{border-color:var(--geranio)}
@@ -60,7 +75,8 @@ footer{text-align:center;padding:2.5rem 1.25rem 3rem;color:var(--muted);font-siz
   </div>
   <p class="fecha" id="fecha">Fecha por confirmar</p>
   <p class="lugar">Córdoba</p>
-  <p class="cuenta" id="cuenta" hidden></p>
+  <ul class="cuenta" id="cuenta" role="timer" aria-label="Cuenta atrás hasta la boda" hidden><li><b>0</b><span>días</span></li><li><b>00</b><span>horas</span></li><li><b>00</b><span>min</span></li><li><b>00</b><span>seg</span></li></ul>
+  <p class="hoy" id="hoy" hidden>¡Hoy es el gran día!</p>
 </header>
 <nav aria-label="Secciones">
   <a href="#donde">Cuándo y dónde</a><a href="#programa">Programa</a><a href="#llegar">Llegar y dormir</a><a href="#detalles">Detalles</a><a href="#asistencia">Confirmar asistencia</a>
@@ -69,7 +85,7 @@ footer{text-align:center;padding:2.5rem 1.25rem 3rem;color:var(--muted);font-siz
 <main>
 <section id="donde"><div class="in">
   <h2>Cuándo y dónde</h2>
-  <p>Nos casamos en Córdoba y queremos celebrarlo con vosotros. En cuanto cerremos fecha y lugares los publicamos aquí.</p>
+  <p>Nos casamos en Córdoba y queremos celebrarlo con vosotros. En cuanto cerremos los lugares y los horarios los publicamos aquí.</p>
   <dl>
     <dt>Fecha</dt><dd id="fecha2">Por confirmar</dd>
     <dt>Ceremonia</dt><dd>Lugar y hora por confirmar</dd>
@@ -93,7 +109,7 @@ footer{text-align:center;padding:2.5rem 1.25rem 3rem;color:var(--muted);font-siz
   <p class="pend">Pendiente de cerrar los lugares.</p>
   <dl>
     <dt>Cómo llegar</dt><dd>Córdoba tiene estación de AVE y se llega bien desde Madrid, Sevilla y Málaga. Añadiremos mapa y aparcamiento cuando tengamos el sitio.</dd>
-    <dt>Alojamiento</dt><dd>Os pasaremos opciones cercanas al lugar de la celebración. Si venís de fuera, reservad cuando conozcáis la fecha.</dd>
+    <dt>Alojamiento</dt><dd>Os pasaremos opciones cercanas al lugar de la celebración. Si venís de fuera, os recomendamos reservar con tiempo.</dd>
     <dt>Transporte el día de la boda</dt><dd>Por confirmar.</dd>
   </dl>
 </div></section>
@@ -101,7 +117,7 @@ footer{text-align:center;padding:2.5rem 1.25rem 3rem;color:var(--muted);font-siz
 <section id="detalles"><div class="in">
   <h2>Detalles</h2>
   <dl>
-    <dt>Vestimenta</dt><dd>Por confirmar. Si la boda cae en verano, ya sabéis lo que es Córdoba: ropa fresca y calzado cómodo.</dd>
+    <dt>Vestimenta</dt><dd>Por confirmar. En octubre en Córdoba puede hacer calor de día y refrescar por la noche: llevad una chaqueta ligera y calzado cómodo.</dd>
     <dt>Regalo</dt><dd>Vuestra presencia es lo importante. Si queréis tener un detalle, os daremos los datos aquí más adelante.</dd>
     <dt>Alergias y menús</dt><dd>Podréis indicarlas en el formulario de asistencia.</dd>
     <dt>Dudas</dt><dd>Escribidnos a Mónica o a Raúl directamente.</dd>
@@ -119,8 +135,9 @@ footer{text-align:center;padding:2.5rem 1.25rem 3rem;color:var(--muted);font-siz
 
 <script>
 // Editar estos dos valores cuando estén definidos:
-var FECHA = null;      // por ejemplo: "2027-06-12T12:00:00"
+var FECHA = "2027-10-16T00:00:00";
 var FORM_URL = "";     // enlace del Google Forms
+var FOTO = "foto.jpg"; // foto subida junto a index.html; si no existe, se ve el arco solo
 (function(){
   if (FECHA) {
     var d = new Date(FECHA);
@@ -129,10 +146,31 @@ var FORM_URL = "";     // enlace del Google Forms
       txt = txt.charAt(0).toUpperCase() + txt.slice(1);
       document.getElementById("fecha").textContent = txt;
       document.getElementById("fecha2").textContent = txt;
-      var dias = Math.ceil((d - new Date()) / 86400000);
-      var c = document.getElementById("cuenta");
-      if (dias > 0) { c.textContent = "Faltan " + dias + (dias === 1 ? " día" : " días"); c.hidden = false; }
+      var c = document.getElementById("cuenta"), hoy = document.getElementById("hoy");
+      var v = c.querySelectorAll("b");
+      var pad = function(n){ return n < 10 ? "0" + n : "" + n; };
+      var t;
+      var tick = function(){
+        var ms = d - new Date();
+        if (ms <= 0) { c.hidden = true; clearInterval(t); if (ms > -86400000) hoy.hidden = false; return; }
+        var sg = Math.floor(ms / 1000);
+        v[0].textContent = Math.floor(sg / 86400);
+        v[1].textContent = pad(Math.floor(sg % 86400 / 3600));
+        v[2].textContent = pad(Math.floor(sg % 3600 / 60));
+        v[3].textContent = pad(sg % 60);
+        c.hidden = false;
+      };
+      t = setInterval(tick, 1000); tick();
     }
+  }
+  if (FOTO) {
+    var im = new Image();
+    im.onload = function(){
+      var h = document.querySelector(".hero");
+      h.style.backgroundImage = "linear-gradient(rgba(10,20,35,.3),rgba(10,20,35,.68)), url('" + FOTO + "')";
+      h.classList.add("foto");
+    };
+    im.src = FOTO;
   }
   if (FORM_URL) {
     var b = document.getElementById("btnForm");
