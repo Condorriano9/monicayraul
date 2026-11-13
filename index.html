@@ -8,13 +8,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#FCFCFA;--surface:#EEF2F7;--ink:#1B2433;--muted:#566176;--azul:#1D4E89;--geranio:#C8305A;--line:#D3DBE6;--onazul:#FFFFFF;
+:root{--bg:#F2E9D8;--surface:#EADFC9;--ink:#2A2320;--muted:#675D52;--azul:#1D4E89;--geranio:#B3294F;--line:#D6C8AE;--onazul:#FFFFFF;--cw:clamp(24px,3vw,44px);color-scheme:light;
+--cen:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2032%2048%27%3E%3Crect%20width%3D%2732%27%20height%3D%2748%27%20fill%3D%27%23E8DCC4%27/%3E%3Crect%20x%3D%272%27%20width%3D%271.3%27%20height%3D%2748%27%20fill%3D%27%237A5C3E%27/%3E%3Crect%20x%3D%274.4%27%20width%3D%27.6%27%20height%3D%2748%27%20fill%3D%27%23A88B63%27/%3E%3Crect%20x%3D%2727%27%20width%3D%27.6%27%20height%3D%2748%27%20fill%3D%27%23A88B63%27/%3E%3Crect%20x%3D%2728.7%27%20width%3D%271.3%27%20height%3D%2748%27%20fill%3D%27%237A5C3E%27/%3E%3Cpolygon%20points%3D%2716%2C3%2023%2C12%2016%2C21%209%2C12%27%20fill%3D%27none%27%20stroke%3D%27%237A5C3E%27%20stroke-width%3D%271%27/%3E%3Cpolygon%20points%3D%2716%2C7.5%2019.5%2C12%2016%2C16.5%2012.5%2C12%27%20fill%3D%27%23A88B63%27/%3E%3Ccircle%20cx%3D%2716%27%20cy%3D%2727%27%20r%3D%271.1%27%20fill%3D%27%23A88B63%27/%3E%3Ccircle%20cx%3D%2716%27%20cy%3D%2736%27%20r%3D%271.9%27%20fill%3D%27%237A5C3E%27/%3E%3Ccircle%20cx%3D%2716%27%20cy%3D%2745%27%20r%3D%271.1%27%20fill%3D%27%23A88B63%27/%3E%3C/svg%3E");
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101722;--surface:#17212F;--ink:#EEF1F6;--muted:#A3AEC0;--azul:#7FA8DE;--geranio:#F0708F;--line:#2A3649;--onazul:#101722}}
-:root[data-theme="dark"]{--bg:#101722;--surface:#17212F;--ink:#EEF1F6;--muted:#A3AEC0;--azul:#7FA8DE;--geranio:#F0708F;--line:#2A3649;--onazul:#101722}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background-color:var(--bg);
+background-image:var(--cen),var(--cen),repeating-linear-gradient(90deg,rgba(110,90,60,.07) 0 1px,transparent 1px 15px);
+background-repeat:repeat-y,repeat-y,repeat;background-position:left top,right top,0 0;background-size:var(--cw) auto,var(--cw) auto,auto}
 *,*::before,*::after{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 Figtree,system-ui,-apple-system,"Segoe UI",sans-serif}
+body{margin:0;padding:0 calc(var(--cw) + .2rem);color:var(--ink);font:400 1.0625rem/1.65 Figtree,system-ui,-apple-system,"Segoe UI",sans-serif}
 h1,h2{font-family:"Young Serif",Georgia,"Times New Roman",serif;font-weight:400;line-height:1.1;margin:0}
 a{color:var(--azul)}
 :focus-visible{outline:3px solid var(--geranio);outline-offset:3px;border-radius:4px}
@@ -24,12 +25,15 @@ a{color:var(--azul)}
 .arco .texto{position:absolute;inset:34% 0 auto 0;padding:0 12%}
 .arco h1{font-size:clamp(2.1rem,9vw,3rem);color:var(--azul)}
 .arco .y{display:block;font:400 1.05rem Figtree,sans-serif;color:var(--geranio);margin:.35rem 0}
-.portada{display:block;width:min(100%,24rem);height:auto;margin:0 auto 1.75rem;border-radius:1rem;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.marco{position:relative}
+.portada{display:block;width:100%;height:auto;border-radius:1rem;box-shadow:0 10px 30px rgba(0,0,0,.2)}
 .portada[hidden]{display:none}
-.hero.tarjeta .arco{width:auto}
+.hero.tarjeta .marco{width:min(100%,24rem);margin:0 auto 1.75rem}
+.hero.tarjeta .arco{position:absolute;left:0;right:0;bottom:5%;width:auto;margin:0}
 .hero.tarjeta .arco svg{display:none}
-.hero.tarjeta .arco .texto{position:static;padding:0}
-.hero.tarjeta h1{font-size:clamp(2.4rem,10vw,3.4rem)}
+.hero.tarjeta .arco .texto{position:static;width:max-content;max-width:88%;margin:0 auto;padding:.7rem 1.1rem;background:rgba(255,255,255,.94);box-shadow:0 6px 18px rgba(0,0,0,.28)}
+.hero.tarjeta h1{font-size:clamp(1.8rem,8.5vw,2.5rem);color:#1D4E89;white-space:nowrap}
+.hero.tarjeta .y{display:inline;margin:0 .3em;color:#C8305A}
 .hero.foto{background-size:cover;background-position:center;min-height:min(88svh,46rem);display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:3rem;color:#fff}
 .hero.foto .arco{width:auto}
 .hero.foto .arco svg{display:none}
@@ -41,7 +45,7 @@ a{color:var(--azul)}
 .lugar{color:var(--muted);margin:0}
 .cuenta{display:flex;justify-content:center;gap:.6rem;margin:1.1rem 0 0;padding:0;list-style:none}
 .cuenta[hidden],.hoy[hidden]{display:none}
-.cuenta li{min-width:4.2rem;padding:.55rem .4rem;border:1px solid var(--line);border-radius:.75rem;text-align:center;line-height:1.1}
+.cuenta li{background:rgba(255,255,255,.5);min-width:4.2rem;padding:.55rem .4rem;border:1px solid var(--line);border-radius:.75rem;text-align:center;line-height:1.1}
 .cuenta b{display:block;font:400 1.75rem "Young Serif",Georgia,serif;color:var(--azul);font-variant-numeric:tabular-nums}
 .cuenta span{font-size:.78rem;color:var(--muted)}
 .hoy{margin:1.1rem 0 0;color:var(--geranio);font-weight:600;font-size:1.2rem}
@@ -52,7 +56,7 @@ nav{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;justify-content:center;padding
 nav a{text-decoration:none;font-weight:500;padding:.35rem .1rem;border-bottom:2px solid var(--line)}
 nav a:hover{border-color:var(--geranio)}
 section{padding:3.25rem 1.25rem}
-section:nth-of-type(even){background:var(--surface)}
+section+section{border-top:1px solid var(--line)}
 .in{max-width:40rem;margin:0 auto}
 h2{font-size:1.9rem;color:var(--azul);margin-bottom:1.1rem}
 p{margin:0 0 1rem}
@@ -71,6 +75,7 @@ footer{text-align:center;padding:2.5rem 1.25rem 3rem;color:var(--muted);font-siz
 </head>
 <body>
 <header class="hero">
+  <div class="marco" id="marco">
   <img class="portada" id="portada" width="828" height="1472" alt="Mónica y Raúl. Save the date: 16 de octubre de 2027" hidden>
   <div class="arco">
     <svg viewBox="0 0 300 400" role="img" aria-label="Arco de herradura">
@@ -80,8 +85,9 @@ footer{text-align:center;padding:2.5rem 1.25rem 3rem;color:var(--muted);font-siz
     </svg>
     <div class="texto"><h1>Mónica<span class="y">y</span>Raúl</h1></div>
   </div>
+  </div>
   <p class="fecha" id="fecha">Fecha por confirmar</p>
-  <p class="lugar">Córdoba</p>
+  <p class="lugar">Palacio de Portocarrero · Palma del Río, Córdoba</p>
   <ul class="cuenta" id="cuenta" role="timer" aria-label="Cuenta atrás hasta la boda" hidden><li><b>0</b><span>días</span></li><li><b>00</b><span>horas</span></li><li><b>00</b><span>min</span></li><li><b>00</b><span>seg</span></li></ul>
   <p class="hoy" id="hoy" hidden>¡Hoy es el gran día!</p>
 </header>
@@ -92,11 +98,11 @@ footer{text-align:center;padding:2.5rem 1.25rem 3rem;color:var(--muted);font-siz
 <main>
 <section id="donde"><div class="in">
   <h2>Cuándo y dónde</h2>
-  <p>Nos casamos en Córdoba y queremos celebrarlo con vosotros. En cuanto cerremos los lugares y los horarios los publicamos aquí.</p>
+  <p>La boda será en el Palacio de Portocarrero, en Palma del Río (Córdoba), y queremos celebrarla con vosotros. Los horarios los publicaremos aquí en cuanto los cerremos.</p>
   <dl>
     <dt>Fecha</dt><dd id="fecha2">Por confirmar</dd>
-    <dt>Ceremonia</dt><dd>Lugar y hora por confirmar</dd>
-    <dt>Celebración</dt><dd>Lugar y hora por confirmar</dd>
+    <dt>Lugar</dt><dd>Palacio de Portocarrero, Palma del Río (Córdoba) · <a href="https://www.google.com/maps/search/?api=1&amp;query=Palacio+de+Portocarrero+Palma+del+R%C3%ADo" target="_blank" rel="noopener">Ver en el mapa</a></dd>
+    <dt>Horarios</dt><dd>Ceremonia y celebración por confirmar</dd>
   </dl>
 </div></section>
 
@@ -113,10 +119,10 @@ footer{text-align:center;padding:2.5rem 1.25rem 3rem;color:var(--muted);font-siz
 
 <section id="llegar"><div class="in">
   <h2>Cómo llegar y dónde dormir</h2>
-  <p class="pend">Pendiente de cerrar los lugares.</p>
+  <p class="pend">Pendiente de cerrar horarios y alojamiento.</p>
   <dl>
-    <dt>Cómo llegar</dt><dd>Córdoba tiene estación de AVE y se llega bien desde Madrid, Sevilla y Málaga. Añadiremos mapa y aparcamiento cuando tengamos el sitio.</dd>
-    <dt>Alojamiento</dt><dd>Os pasaremos opciones cercanas al lugar de la celebración. Si venís de fuera, os recomendamos reservar con tiempo.</dd>
+    <dt>Cómo llegar</dt><dd>Palma del Río está en la provincia de Córdoba, a unos 55 km de la capital. Lo más práctico es ir en coche; si venís en AVE, la estación más cercana es la de Córdoba. Añadiremos aparcamiento y opciones de transporte más adelante.</dd>
+    <dt>Alojamiento</dt><dd>Os pasaremos opciones cercanas al Palacio. Si venís de fuera, os recomendamos reservar con tiempo.</dd>
     <dt>Transporte el día de la boda</dt><dd>Por confirmar.</dd>
   </dl>
 </div></section>
@@ -138,7 +144,7 @@ footer{text-align:center;padding:2.5rem 1.25rem 3rem;color:var(--muted);font-siz
 </div></section>
 </main>
 
-<footer>Mónica y Raúl · Córdoba</footer>
+<footer>Mónica y Raúl · Palma del Río, Córdoba</footer>
 
 <script>
 // Editar estos dos valores cuando estén definidos:
